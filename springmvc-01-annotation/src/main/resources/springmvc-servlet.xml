@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!--该配置文件属于springMVC，在springMVC项目中，该配置文件一般不会变动，内容一般是固定的-->
+
+    <!--自动扫描，让指定包下的注解生效，由IOC容器统一管理 【IoC ( Inversion of Control ,控制倒转)】-->
+    <context:component-scan base-package="com.jiang.controller"/>
+
+    <!--让springMVC不处理静态资源，如：.css  .html  .js .jpeg 等-->
+    <mvc:default-servlet-handler/>
+
+    <!--
+    在spring中一般采用@RequestMapping注解来完成映射关系，要想使@RequestMapping注解生效，
+    必须向上下文中注册DefaultannotationHandlerMapping和AnnotationMethodHandlerAdapter实例，
+    这俩个实例分别在类级别和方法级别帮我们处理，
+    而annotation-driven配置帮助我们自动完成上述俩个实例的注入。
+    替换处理器清扫器
+    -->
+    <mvc:annotation-driven/>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          id="internalResourceViewResolver">
+        <!--前缀-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>

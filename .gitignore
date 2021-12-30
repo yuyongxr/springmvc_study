@@ -1,0 +1,3 @@
+# 项目排除路径
+/out/
+/springmvc-01-annotation/target/
